@@ -1,12 +1,12 @@
 package:
   name: gcc
   version: 14.2.0
-  epoch: 3
+  epoch: 4
   description: "the GNU compiler collection"
   copyright:
     - license: GPL-3.0-or-later WITH GCC-exception-3.1
   resources:
-    cpu: 16
+    cpu: 14
     memory: 16Gi
   dependencies:
     runtime:
@@ -96,6 +96,7 @@ pipeline:
         --enable-cet=auto \
         --enable-link-mutex \
         --with-gcc-major-version-only \
+        --enable-linker-build-id \
         --with-linker-hash-style=gnu
 
   - runs: |
