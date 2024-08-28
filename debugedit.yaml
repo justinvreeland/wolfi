@@ -1,0 +1,37 @@
+package:
+  name: debugedit
+  version: 5.0
+  epoch: 0
+  description: debugedit provides programs and scripts for creating debuginfo and source file distributions, collect build-ids and rewrite source paths in DWARF data for debugging, tracing and profiling.
+  copyright:
+    - license: LGPL-2.0-or-later
+
+environment:
+  contents:
+    packages:
+      - autoconf
+      - automake
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - elfutils-dev
+      - xz
+      - xz-dev
+      - zlib
+      - zlib-dev
+      - zstd
+      - zstd-dev
+
+pipeline:
+  - uses: fetch
+    with:
+      expected-sha512: 7e7f529eafe41b53f0b5bfc58282fdbfa0dfa93ed7908b70e81942d6d2b6f80fc9c6bff2ed9674fd98947e5750b615f4c8b222544989e2900c5f8ff5ae0efb92
+      uri: https://sourceware.org/ftp/debugedit/${{package.version}}/debugedit-${{package.version}}.tar.xz
+
+  - uses: autoconf/configure
+
+  - uses: autoconf/make
+
+  - uses: autoconf/make-install
+
+  - uses: strip
