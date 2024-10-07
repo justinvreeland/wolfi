@@ -49,13 +49,17 @@ pipeline:
 
   - uses: autoconf/make
     with:
-      opts: CPPFLAGS="$CPPFLAGS -DOPENSSL_NO_ENGINE"
+      opts: CPPFLAGS="$CPPFLAGS -DOPENSSL_NO_ENGINE -g"
 
   - uses: autoconf/make-install
 
-  - uses: strip
-
 subpackages:
+  - name: "curl-debug"
+    description: "Debug packages for curl"
+    pipeline:
+      #- uses: split/debug:
+      - uses: debug-buildid
+
   - name: "curl-dev"
     description: "headers for libcurl"
     pipeline:
