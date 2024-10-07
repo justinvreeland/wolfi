@@ -1,0 +1,63 @@
+name: Split debug files
+
+needs:
+  packages:
+    - binutils
+    - debugedit
+    - scanelf
+    - file
+
+pipeline:
+  - if: ${{targets.destdir}} != ${{targets.contextdir}}
+    runs: |
+      set -x
+      mkdir -p "${{targets.destdir}}/.dbg-tmp"
+      # note: the ${{targets.subpkgdir}} doesn't exist when the glob is evaluated
+      scanelf -Ry "${{targets.destdir}}"/* | while read type binary; do
+        if [ "$type" != ET_DYN ]; then
+          continue
+        fi
+        echo Modified binary: ${binary#"${{targets.destdir}}"/*/}
+        dst=${{targets.contextdir}}/usr/lib/debug/${binary#"${{targets.destdir}}"/*/}.debug
+        mkdir -p "${dst%/*}"
+        # Destination directory to copy the source too
+        dstdir=${{targets.contextdir}}/usr/lib/debug/${binary#"${{targets.destdir}}"}
+
+        sourcecode_dir="$(pwd)"
+
+        # Rewrite location and generate list of sourcefiles
+        debugedit --no-recompute-build-id --base-dir /home/build/ \
+        --dest-dir /usr/lib/debug/${{package.name}}/ --list-file /tmp/debugedit-sources  "$binary"
+
+        cat /tmp/debugedit-sources | tr '\0' '\n' | while read sourcefile; do
+          if [ -f $sourcefile ]; then
+            mkdir -p "${{targets.contextdir}}/usr/lib/src/debug/${{package.name}}/${sourcefile%/*}/"
+            cp "$sourcefile" "${{targets.contextdir}}/usr/lib/src/debug/${{package.name}}/${sourcefile%/*}/"
+          fi
+        done
+        rm /tmp/debugedit-sources
+
+        ino=$(stat -c %i "$binary")
+        if ! [ -e "${{targets.destdir}}/.dbg-tmp/$ino" ]; then
+          tmp=${{targets.destdir}}/.dbg-tmp/${binary##*/}
+          objcopy --only-keep-debug "$binary" "$dst"
+          objcopy --add-gnu-debuglink="$dst" --strip-unneeded -R .comment "$binary" "$tmp"
+          # preserve attributes, links
+          cat "$tmp" > "$binary"
+          rm "$tmp"
+          ln "$dst" "${{targets.destdir}}/.dbg-tmp/$ino"
+        fi
+
+        buildid=$(readelf -n $binary 2> /dev/null | grep 'Build ID' | tr -d '[:space:]' | cut -d':' -f2)
+        echo BuildID: $buildid
+
+        # add build-id directories
+        if [ -n "$buildid" ]; then
+          mkdir -p "${{targets.contextdir}}/usr/lib/debug/.build-id/${buildid:0:2}"
+          ln -s "../../$(basename $binary).debug" \
+          "${{targets.contextdir}}/usr/lib/debug/.build-id/${buildid:0:2}/${buildid:2}.debug"
+          ln -s "../../../../$(basename $binary)" \
+          "${{targets.contextdir}}/usr/lib/debug/.build-id/${buildid:0:2}/${buildid:2}"
+        fi
+      done
+      rm -r "${{targets.destdir}}/.dbg-tmp"
