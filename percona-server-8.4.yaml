@@ -30,25 +30,25 @@ environment:
       - clang-extras
       - cmake
       - curl-dev
+      - icu-dev
       - libaio-dev
-      - libedit
+      - libedit-dev
       - libevent-dev
+      - libfido2-dev
       - libtirpc-dev
       - linux-pam-dev
-      - ncurses-dev
-      - nfs-utils
+      - lz4-dev
       - openldap-dev
       - openssl-dev
       - pcre2-dev
       - perl
       - readline-dev
-      - reflex
       - rpcgen
       - samurai
-      - sed
       - wolfi-baselayout
       - xz-dev
       - zlib-dev
+      - zstd-dev
 
 pipeline:
   # This package requires boost 1.77 and we are not building that version.
@@ -74,9 +74,8 @@ pipeline:
 
   - name: "Cmake"
     runs: |
-      mkdir /var/tmp
+      mkdir build && cd build
       cmake . -G Ninja \
-        -DFORCE_INSOURCE_BUILD=1 \
         -DBUILD_CONFIG=mysql_release \
         -DWITH_EDITLINE=system \
         -DCMAKE_INSTALL_PREFIX=/usr \
@@ -94,14 +93,18 @@ pipeline:
         -DINSTALL_SUPPORTFILESDIR=share/${{package.name}} \
         -DINSTALL_DOCDIR=share/doc/${{package.name}} \
         -DWITH_ROCKSDB=YES \
-        -DTMPDIR=/var/tmp \
         -DWITH_ASAN=OFF \
         -DWITH_EXTRA_CHARSETS=complex \
         -DWITH_SYSTEMD=no \
         -DWITH_SSL=system \
+        -DWITH_LZ4=system \
+        -DWITH_ICU=system \
+        -DWITH_FIDO=system \
         -DWITH_VALGRIND=OFF \
         -DWITH_ZLIB=system \
-        -DWITH_BOOST=/home/build/boost \
+        -DWITH_ZSTD=system \
+        -DWITH_TEST=off \
+        ..
 
   - name: "Install"
     runs: |
