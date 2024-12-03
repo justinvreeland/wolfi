@@ -1,0 +1,41 @@
+# Generated from https://github.com/ruby/io-console
+package:
+  name: ruby3.4-io-console
+  version: 0.7.2
+  epoch: 0
+  description: add console capabilities to IO instances.
+  copyright:
+    - license: Ruby
+    - license: BSD-2-Clause
+
+environment:
+  contents:
+    packages:
+      - build-base
+      - busybox
+      - ca-certificates-bundle
+      - git
+      - ruby-${{vars.rubyMM}}
+      - ruby-${{vars.rubyMM}}-dev
+      - ruby3.4-rubygems
+
+pipeline:
+  - uses: fetch
+    with:
+      expected-sha256: 52642186fac327f5b78fbfdd04c17c3846c53aff003b586a6df0854e0f6eee6e
+      uri: https://github.com/ruby/io-console/archive/refs/tags/v${{package.version}}.tar.gz
+
+  - uses: ruby/build
+    with:
+      gem: ${{vars.gem}}
+
+  - uses: ruby/install
+    with:
+      gem: ${{vars.gem}}
+      version: ${{package.version}}
+
+  - uses: ruby/clean
+
+vars:
+  gem: io-console
+  rubyMM: "3.4"
