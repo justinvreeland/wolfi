@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-validate_url
+  name: ruby3.4-validate_url
   version: 1.0.15
   epoch: 0
   description: Library for validating urls in Rails.

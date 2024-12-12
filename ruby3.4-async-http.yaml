@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-async-http
+  name: ruby3.4-async-http
   version: 0.86.0
   epoch: 0
   description: A HTTP client and server library.

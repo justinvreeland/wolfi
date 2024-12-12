@@ -1,6 +1,6 @@
 # Generated from http://www.elastic.co/guide/en/logstash/current/index.html
 package:
-  name: ruby3.3-logstash-core
+  name: ruby3.4-logstash-core
   version: 8.16.1
   epoch: 0
   description: The core components of logstash, the scalable log and event management tool

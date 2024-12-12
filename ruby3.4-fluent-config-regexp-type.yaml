@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-fluent-config-regexp-type
+  name: ruby3.4-fluent-config-regexp-type
   version: 1.0.0
   epoch: 0
   description: Backport regex type for fluentd

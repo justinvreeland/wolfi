@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-rack-oauth2
+  name: ruby3.4-rack-oauth2
   version: 2.2.1
   epoch: 0
   description: OAuth 2.0 Server & Client Library. Both Bearer token type are supported.

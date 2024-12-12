@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-kubeclient
+  name: ruby3.4-kubeclient
   version: 4.12.0
   epoch: 0
   description: An efficient, thread safe LRU cache.
