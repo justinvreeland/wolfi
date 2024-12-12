@@ -1,11 +1,13 @@
 package:
-  name: ruby3.4-ruby2_keywords
-  version: 0.0.5
+  name: ruby3.4-net-http-persistent
+  version: 4.0.2
   epoch: 0
-  description: Shim library for Module#ruby2_keywords
+  description: Manages persistent connections using Net::HTTP including a thread pool for connecting to multiple hosts.
   copyright:
-    - license: Ruby
-    - license: BSD-2-Clause
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby${{vars.rubyMM}}-connection_pool
 
 environment:
   contents:
@@ -20,9 +22,9 @@ environment:
 pipeline:
   - uses: git-checkout
     with:
-      repository: https://github.com/ruby/ruby2_keywords
+      expected-commit: 1fb915ff6e700a06d711ebf0217b2f12f559f33c
+      repository: https://github.com/drbrain/net-http-persistent
       tag: v${{package.version}}
-      expected-commit: 92ad9c5c3fff591b8383ada8b93c3da1279d24ad
 
   - uses: ruby/build
     with:
@@ -36,12 +38,12 @@ pipeline:
   - uses: ruby/clean
 
 vars:
-  gem: ruby2_keywords
+  gem: net-http-persistent
 
 update:
   enabled: true
   github:
-    identifier: ruby/ruby2_keywords
+    identifier: drbrain/net-http-persistent
     strip-prefix: v
 
 var-transforms:

@@ -1,11 +1,15 @@
+# Generated from https://github.com/ruby/psych
 package:
-  name: ruby3.4-ruby2_keywords
-  version: 0.0.5
+  name: ruby3.4-psych
+  version: 5.2.1
   epoch: 0
-  description: Shim library for Module#ruby2_keywords
+  description: Psych is a YAML parser and emitter.
   copyright:
-    - license: Ruby
-    - license: BSD-2-Clause
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby-${{vars.rubyMM}}
+      - ruby${{vars.rubyMM}}-stringio
 
 environment:
   contents:
@@ -16,13 +20,14 @@ environment:
       - git
       - ruby-${{vars.rubyMM}}
       - ruby-${{vars.rubyMM}}-dev
+      - yaml-dev
 
 pipeline:
   - uses: git-checkout
     with:
-      repository: https://github.com/ruby/ruby2_keywords
+      repository: https://github.com/ruby/psych.git
       tag: v${{package.version}}
-      expected-commit: 92ad9c5c3fff591b8383ada8b93c3da1279d24ad
+      expected-commit: 7c81f7db53cf2dbed9cf7a441867af62453c0011
 
   - uses: ruby/build
     with:
@@ -36,12 +41,16 @@ pipeline:
   - uses: ruby/clean
 
 vars:
-  gem: ruby2_keywords
+  gem: psych
+
+test:
+  pipeline:
+    - runs: ruby -e "require 'psych'"
 
 update:
   enabled: true
   github:
-    identifier: ruby/ruby2_keywords
+    identifier: ruby/psych
     strip-prefix: v
 
 var-transforms:

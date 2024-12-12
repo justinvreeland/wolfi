@@ -1,11 +1,15 @@
+# Generated from https://github.com/ruby/reline
 package:
-  name: ruby3.4-ruby2_keywords
-  version: 0.0.5
+  name: ruby3.4-reline
+  version: 0.5.12
   epoch: 0
-  description: Shim library for Module#ruby2_keywords
+  description: Alternative GNU Readline or Editline implementation by pure Ruby.
   copyright:
     - license: Ruby
-    - license: BSD-2-Clause
+  dependencies:
+    runtime:
+      - ruby-${{vars.rubyMM}}
+      - ruby${{vars.rubyMM}}-io-console
 
 environment:
   contents:
@@ -20,9 +24,9 @@ environment:
 pipeline:
   - uses: git-checkout
     with:
-      repository: https://github.com/ruby/ruby2_keywords
+      repository: https://github.com/ruby/reline.git
       tag: v${{package.version}}
-      expected-commit: 92ad9c5c3fff591b8383ada8b93c3da1279d24ad
+      expected-commit: d4f6741e7eb942b5bf71b9c318492a4a79625c74
 
   - uses: ruby/build
     with:
@@ -36,12 +40,16 @@ pipeline:
   - uses: ruby/clean
 
 vars:
-  gem: ruby2_keywords
+  gem: reline
+
+test:
+  pipeline:
+    - runs: ruby -e "require 'reline'"
 
 update:
   enabled: true
   github:
-    identifier: ruby/ruby2_keywords
+    identifier: ruby/reline
     strip-prefix: v
 
 var-transforms:

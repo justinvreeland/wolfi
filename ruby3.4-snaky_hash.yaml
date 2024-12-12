@@ -1,11 +1,14 @@
 package:
-  name: ruby3.4-ruby2_keywords
-  version: 0.0.5
+  name: ruby3.4-snaky_hash
+  version: 2.0.0
   epoch: 0
-  description: Shim library for Module#ruby2_keywords
+  description: 'A Hashie::Mash joint to make #snakelife better'
   copyright:
-    - license: Ruby
-    - license: BSD-2-Clause
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby${{vars.rubyMM}}-hashie
+      - ruby${{vars.rubyMM}}-version_gem
 
 environment:
   contents:
@@ -14,15 +17,16 @@ environment:
       - busybox
       - ca-certificates-bundle
       - git
+      - ruby${{vars.rubyMM}}-bundler
       - ruby-${{vars.rubyMM}}
       - ruby-${{vars.rubyMM}}-dev
 
 pipeline:
   - uses: git-checkout
     with:
-      repository: https://github.com/ruby/ruby2_keywords
+      expected-commit: 63628366fa881b8f5de66799e715f28664210a83
       tag: v${{package.version}}
-      expected-commit: 92ad9c5c3fff591b8383ada8b93c3da1279d24ad
+      repository: https://gitlab.com/oauth-xx/snaky_hash
 
   - uses: ruby/build
     with:
@@ -36,13 +40,10 @@ pipeline:
   - uses: ruby/clean
 
 vars:
-  gem: ruby2_keywords
+  gem: snaky_hash
 
 update:
-  enabled: true
-  github:
-    identifier: ruby/ruby2_keywords
-    strip-prefix: v
+  enabled: false
 
 var-transforms:
   - from: ${{package.name}}

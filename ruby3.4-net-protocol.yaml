@@ -1,11 +1,14 @@
 package:
-  name: ruby3.4-ruby2_keywords
-  version: 0.0.5
+  name: ruby3.4-net-protocol
+  version: 0.2.2
   epoch: 0
-  description: Shim library for Module#ruby2_keywords
+  description: The abstract interface for net-* client.
   copyright:
     - license: Ruby
     - license: BSD-2-Clause
+  dependencies:
+    runtime:
+      - ruby${{vars.rubyMM}}-timeout
 
 environment:
   contents:
@@ -20,9 +23,9 @@ environment:
 pipeline:
   - uses: git-checkout
     with:
-      repository: https://github.com/ruby/ruby2_keywords
+      expected-commit: 2d3c4b43a837a616e5853f807cde63aaffbcd280
+      repository: https://github.com/ruby/net-protocol
       tag: v${{package.version}}
-      expected-commit: 92ad9c5c3fff591b8383ada8b93c3da1279d24ad
 
   - uses: ruby/build
     with:
@@ -36,12 +39,12 @@ pipeline:
   - uses: ruby/clean
 
 vars:
-  gem: ruby2_keywords
+  gem: net-protocol
 
 update:
   enabled: true
   github:
-    identifier: ruby/ruby2_keywords
+    identifier: ruby/net-protocol
     strip-prefix: v
 
 var-transforms:

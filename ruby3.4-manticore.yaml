@@ -1,11 +1,14 @@
+# Generated from https://github.com/cheald/manticore
 package:
-  name: ruby3.4-ruby2_keywords
-  version: 0.0.5
+  name: ruby3.4-manticore
+  version: 0.9.1
   epoch: 0
-  description: Shim library for Module#ruby2_keywords
+  description: Manticore is an HTTP client built on the Apache HttpCore components
   copyright:
-    - license: Ruby
-    - license: BSD-2-Clause
+    - license: MIT
+  dependencies:
+    runtime:
+      - ruby${{vars.rubyMM}}-openssl_pkcs8_pure
 
 environment:
   contents:
@@ -20,9 +23,9 @@ environment:
 pipeline:
   - uses: git-checkout
     with:
-      repository: https://github.com/ruby/ruby2_keywords
+      repository: https://github.com/cheald/manticore
       tag: v${{package.version}}
-      expected-commit: 92ad9c5c3fff591b8383ada8b93c3da1279d24ad
+      expected-commit: acc25cac2999f4658a77a0f39f60ddbca8fe14a4
 
   - uses: ruby/build
     with:
@@ -30,19 +33,21 @@ pipeline:
 
   - uses: ruby/install
     with:
-      gem: ${{vars.gem}}
+      # Output file name has `java` suffix.
+      gem-file: ${{vars.gem}}-${{package.version}}-java.gem
       version: ${{package.version}}
 
   - uses: ruby/clean
 
 vars:
-  gem: ruby2_keywords
+  gem: manticore
 
 update:
   enabled: true
   github:
-    identifier: ruby/ruby2_keywords
+    identifier: cheald/manticore
     strip-prefix: v
+    use-tag: true
 
 var-transforms:
   - from: ${{package.name}}
