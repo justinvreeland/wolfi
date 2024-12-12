@@ -1,6 +1,6 @@
 # Generated from https://github.com/sinatra/sinatra
 package:
-  name: ruby3.3-sinatra
+  name: ruby3.4-sinatra
   version: 4.1.1
   epoch: 0
   description: Sinatra is a DSL for quickly creating web applications in Ruby with minimal effort.
