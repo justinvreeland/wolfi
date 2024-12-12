@@ -50,6 +50,9 @@ pipeline:
     with:
       series: series
 
+  - runs: |
+      touch /etc/gcc_spec_file
+
 subpackages:
   - range: py-versions
     name: py${{range.key}}-${{vars.pypi-package}}
