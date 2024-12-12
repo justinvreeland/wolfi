@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-webfinger
+  name: ruby3.4-webfinger
   version: 2.1.2
   epoch: 0
   description: Ruby WebFinger client library

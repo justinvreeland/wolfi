@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-metrics
+  name: ruby3.4-metrics
   version: 0.12.1
   epoch: 0
   description: Application metrics and instrumentation.

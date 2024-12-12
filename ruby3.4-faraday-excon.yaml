@@ -1,6 +1,6 @@
 # Generated from https://github.com/lostisland/faraday-excon
 package:
-  name: ruby3.3-faraday-excon
+  name: ruby3.4-faraday-excon
   version: 2.1.0
   epoch: 0
   description: Faraday adapter for Excon

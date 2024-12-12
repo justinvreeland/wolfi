@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-tzinfo-data
+  name: ruby3.4-tzinfo-data
   version: 1.2024.2
   epoch: 0
   description: TZInfo::Data contains data from the IANA Time Zone database packaged as Ruby modules for use with TZInfo.

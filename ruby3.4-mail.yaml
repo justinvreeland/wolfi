@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-mail
+  name: ruby3.4-mail
   version: 2.8.1
   epoch: 0
   description: A really Ruby Mail handler.

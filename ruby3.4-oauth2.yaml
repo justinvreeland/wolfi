@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-oauth2
+  name: ruby3.4-oauth2
   version: 2.0.9
   epoch: 0
   description: A Ruby wrapper for the OAuth 2.0 protocol built with a similar style to the original OAuth spec.

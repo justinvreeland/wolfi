@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-async-pool
+  name: ruby3.4-async-pool
   version: 0.10.2
   epoch: 0
   description: A singleplex and multiplex resource pool for implementing robust clients.

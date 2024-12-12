@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-elastic-transport
+  name: ruby3.4-elastic-transport
   version: 8.3.5
   epoch: 0
   description: |
