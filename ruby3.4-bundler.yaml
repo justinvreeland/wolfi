@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-bundler
+  name: ruby3.4-bundler
   version: 2.5.23
   epoch: 0
   description: "Manage an application's gem dependencies"
@@ -7,7 +7,7 @@ package:
     - license: MIT
   dependencies:
     runtime:
-      - ruby-3.3
+      - ruby-3.4
 
 environment:
   contents:
@@ -16,8 +16,8 @@ environment:
       - build-base
       - busybox
       - ca-certificates-bundle
-      - ruby-3.3
-      - ruby-3.3-dev
+      - ruby-3.4
+      - ruby-3.4-dev
 
 vars:
   gem: bundler
@@ -54,7 +54,7 @@ pipeline:
                  "$INSTALL_DIR"/gems/bundler-${{package.version}}/*.md
 
 subpackages:
-  - name: "ruby3.3-bundler-doc"
+  - name: "ruby3.4-bundler-doc"
     description: "ruby-bundler documentation"
     pipeline:
       - uses: split/manpages

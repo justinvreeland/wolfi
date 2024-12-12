@@ -1,6 +1,6 @@
 # Generated from https://github.com/ruby-concurrency/thread_safe
 package:
-  name: ruby3.3-thread_safe
+  name: ruby3.4-thread_safe
   version: 0.3.6
   epoch: 0
   description: A collection of data structures and utilities to make thread-safe programming in Ruby easier

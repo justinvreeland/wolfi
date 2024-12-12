@@ -1,6 +1,6 @@
 # Generated from https://github.com/mdub/clamp
 package:
-  name: ruby3.3-clamp
+  name: ruby3.4-clamp
   version: 1.3.2
   epoch: 0
   description: Clamp provides an object-model for command-line utilities.

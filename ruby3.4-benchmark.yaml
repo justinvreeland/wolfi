@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-benchmark
+  name: ruby3.4-benchmark
   version: 0.4.0
   epoch: 0
   description: "A performance benchmarking library for Ruby"

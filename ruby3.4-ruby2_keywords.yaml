@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-ruby2_keywords
+  name: ruby3.4-ruby2_keywords
   version: 0.0.5
   epoch: 0
   description: Shim library for Module#ruby2_keywords

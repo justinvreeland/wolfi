@@ -1,6 +1,6 @@
 # Generated from https://github.com/danielsdeleo/deep_merge
 package:
-  name: ruby3.3-deep_merge
+  name: ruby3.4-deep_merge
   version: 1.2.2
   epoch: 0
   description: Recursively merge hashes.

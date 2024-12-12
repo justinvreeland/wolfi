@@ -1,6 +1,6 @@
 # Generated from https://github.com/jwt/ruby-jwt
 package:
-  name: ruby3.3-jwt
+  name: ruby3.4-jwt
   version: 2.9.3
   epoch: 0
   description: A pure ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.

@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-oj
+  name: ruby3.4-oj
   version: 3.16.7
   epoch: 0
   description: The fastest JSON parser and object serializer.

@@ -1,6 +1,6 @@
 # Generated from https://github.com/brianmario/charlock_holmes
 package:
-  name: ruby3.3-charlock_holmes
+  name: ruby3.4-charlock_holmes
   version: 0.7.9
   epoch: 0
   description: charlock_holmes provides binary and text detection as well as text transcoding using libicu

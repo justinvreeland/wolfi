@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-securerandom
+  name: ruby3.4-securerandom
   version: 0.4.0
   epoch: 0
   description: Interface for secure random number generator.

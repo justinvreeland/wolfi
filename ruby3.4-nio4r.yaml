@@ -1,6 +1,6 @@
 # Generated from https://github.com/socketry/nio4r/tree/v2.5.9
 package:
-  name: ruby3.3-nio4r
+  name: ruby3.4-nio4r
   version: 2.7.1
   epoch: 0
   description: Cross-platform asynchronous I/O primitives for scalable network clients and servers. Inspired by the Java NIO API, but simplified for ease-of-use.

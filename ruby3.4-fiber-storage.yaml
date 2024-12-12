@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-fiber-storage
+  name: ruby3.4-fiber-storage
   version: 1.0.0
   epoch: 0
   description: Provides a compatibility shim for fiber storage.

@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-net-imap
+  name: ruby3.4-net-imap
   version: 0.5.1
   epoch: 0
   description: Ruby client api for Internet Message Access Protocol

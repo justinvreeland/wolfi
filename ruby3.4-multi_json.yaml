@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-multi_json
+  name: ruby3.4-multi_json
   version: 1.15.0
   epoch: 0
   description: A common interface to multiple JSON libraries, including Oj, Yajl, the JSON gem (with C-extensions), the pure-Ruby JSON gem, NSJSONSerialization, gson.rb, JrJackson, and OkJson.

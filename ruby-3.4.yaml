@@ -1,7 +1,7 @@
 package:
-  name: ruby-3.3
-  version: 3.3.6
-  epoch: 4
+  name: ruby-3.4
+  version: 3.4.0
+  epoch: 0
   description: "the Ruby programming language"
   copyright:
     - license: Ruby
@@ -9,21 +9,31 @@ package:
   dependencies:
     provides:
       - ruby=${{package.full-version}}
+      # These are bundled gems
+      - ruby3.4-csv
+      - ruby3.4-base64
+      - ruby3.4-drb
+    runtime:
+      - glibc
+      - gmp
+      - libgcc
+      - openssl
+      - yaml
+      - zlib
 
 environment:
   contents:
     packages:
       - autoconf
-      - bison
       - build-base
       - busybox
-      - bzip2-dev
       - ca-certificates-bundle
+      - coreutils
       - expat-dev
       - gdbm-dev
       - glibc-dev
       - gmp-dev
-      - gperf
+      - graphviz
       - libffi-dev
       - libxcrypt-dev
       - linux-headers
@@ -34,8 +44,9 @@ environment:
       - openssl-dev
       - pkgconf
       - readline-dev
-      - ruby-3.2
+      - ruby-3.3
       - rust
+      - tk-dev
       - yaml-dev
       - zlib-dev
 
@@ -52,8 +63,8 @@ pipeline:
   - uses: git-checkout
     with:
       repository: https://github.com/ruby/ruby
-      tag: v${{vars.underscore-package-version}}
-      expected-commit: 75015d4c1f6965b5e85e96fb309f1f2129f933c0
+      tag: v${{vars.underscore-package-version}}_preview2
+      expected-commit: 32c733f57bb91e22972319ee63eac9521d954ebc
 
   - uses: patch
     with:
@@ -89,7 +100,7 @@ pipeline:
 
   - runs: |
       # Ignore the patch version of ruby since ruby will install under the
-      # version of the latest standard library. Should produce the string 3.3.*
+      # version of the latest standard library. Should produce the string 3.4.*
       RUBYWILD="$(echo ${{package.version}} | cut -d. -f-2).*"
 
       RUBYDIR=${{targets.destdir}}${{vars.prefix}}/lib/ruby/$RUBYWILD
@@ -107,7 +118,7 @@ pipeline:
       find ${{targets.destdir}} -name 'mkmf.log' -exec rm {} \;
 
 subpackages:
-  - name: "ruby-3.3-doc"
+  - name: "ruby-3.4-doc"
     description: "ruby documentation"
     pipeline:
       - uses: split/manpages
@@ -116,7 +127,7 @@ subpackages:
           mv "${{targets.destdir}}"/usr/share/doc "${{targets.subpkgdir}}"/usr/share/
           mv "${{targets.destdir}}"/usr/share/ri "${{targets.subpkgdir}}"/usr/share/
 
-  - name: "ruby-3.3-dev"
+  - name: "ruby-3.4-dev"
     description: "ruby development headers"
     pipeline:
       - uses: split/dev
@@ -133,7 +144,7 @@ update:
     identifier: ruby/ruby
     strip-prefix: v
     use-tag: true
-    tag-filter-prefix: v3_3_
+    tag-filter-prefix: v3_4_
 
 test:
   pipeline:

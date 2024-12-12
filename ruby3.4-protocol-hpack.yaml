@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-protocol-hpack
+  name: ruby3.4-protocol-hpack
   version: 1.5.1
   epoch: 0
   description: A compresssor and decompressor for HTTP 2.0 HPACK.
@@ -37,9 +37,6 @@ pipeline:
 
   - working-directory: ${{vars.gem}}
     pipeline:
-      - uses: patch
-        with:
-          patches: ../001-remove-signing-key.patch
       - uses: ruby/build
         with:
           # NOTE: See vars.gemspec comment for details

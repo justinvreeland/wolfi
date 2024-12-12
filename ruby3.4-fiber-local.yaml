@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-fiber-local
+  name: ruby3.4-fiber-local
   version: 1.1.0
   epoch: 0
   description: Provides a class-level mixin to make fiber local state easy.
@@ -29,10 +29,6 @@ pipeline:
       expected-commit: e2299f7a88c3336946e1c469cd086fd3350f5529
       repository: https://github.com/socketry/fiber-local
       tag: v${{package.version}}
-
-  - uses: patch
-    with:
-      patches: 001-remove-signing-key.patch
 
   - uses: ruby/build
     with:

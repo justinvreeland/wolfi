@@ -1,6 +1,6 @@
 # Generated from https://github.com/ruby/io-console
 package:
-  name: ruby3.3-io-console
+  name: ruby3.4-io-console
   version: 0.8.0
   epoch: 0
   description: add console capabilities to IO instances.

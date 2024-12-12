@@ -1,6 +1,6 @@
 # Generated from https://github.com/flori/json
 package:
-  name: ruby3.3-json
+  name: ruby3.4-json
   version: 2.9.0
   epoch: 0
   description: This is a JSON implementation as a Ruby extension in C.

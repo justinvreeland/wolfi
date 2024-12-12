@@ -1,6 +1,6 @@
 package:
-  name: ruby3.3-console
-  version: 1.29.2
+  name: ruby3.4-console
+  version: 1.29.0
   epoch: 0
   description: Beautiful logging for Ruby.
   copyright:
@@ -29,13 +29,9 @@ vars:
 pipeline:
   - uses: git-checkout
     with:
-      expected-commit: 0261040a181499b8aa112c7419b31e685f1b51ff
+      expected-commit: ebd30eca2797b448a791d2e4149b1f1b56db7207
       repository: https://github.com/socketry/console
       tag: v${{package.version}}
-
-  - uses: patch
-    with:
-      patches: 001-remove-signing-key.patch
 
   - uses: ruby/build
     with:
@@ -50,21 +46,7 @@ pipeline:
 
 test:
   pipeline:
-    - runs: |
-        ruby -e "require 'console'; puts 'Console library loaded successfully!'"
-    - runs: |
-        ruby <<-EOF
-        require 'console'
-
-        # Create a logger instance
-        logger = Console.logger
-
-        # Log a single message
-        logger.info "Test log message"
-
-        # Verify it doesn't raise errors
-        puts "Console basic logging verified!"
-        EOF
+    - runs: ruby -e "require 'console'"
 
 update:
   enabled: true

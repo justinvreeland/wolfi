@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-timeout
+  name: ruby3.4-timeout
   version: 0.4.2
   epoch: 0
   description: Auto-terminate potentially long-running operations in Ruby.

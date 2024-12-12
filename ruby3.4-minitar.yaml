@@ -1,6 +1,6 @@
 # Generated from https://github.com/halostatue/minitar/
 package:
-  name: ruby3.3-minitar
+  name: ruby3.4-minitar
   version: 1.0.2
   epoch: 0
   description: Minimal pure-ruby support for POSIX tar(1) archives.

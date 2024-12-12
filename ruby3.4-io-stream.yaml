@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-io-stream
+  name: ruby3.4-io-stream
   version: 0.6.1
   epoch: 0
   description: A Ruby gem providing stream abstractions for input and output.

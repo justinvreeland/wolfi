@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-uri
+  name: ruby3.4-uri
   version: 1.0.2
   epoch: 0
   description: "URI is a module providing classes to handle Uniform Resource Identifiers"
@@ -13,8 +13,8 @@ environment:
       - busybox
       - ca-certificates-bundle
       - git
-      - ruby-3.3
-      - ruby-3.3-dev
+      - ruby-3.4
+      - ruby-3.4-dev
 
 pipeline:
   - uses: git-checkout

@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-protocol-http
+  name: ruby3.4-protocol-http
   version: 0.47.1
   epoch: 0
   description: Provides abstractions to handle HTTP protocols.
@@ -28,10 +28,6 @@ pipeline:
       expected-commit: 5dca5815232b65350f7d9f34dbc6bf08bc4afdcc
       repository: https://github.com/socketry/protocol-http
       tag: v${{package.version}}
-
-  - uses: patch
-    with:
-      patches: 001-remove-signing-key.patch
 
   - uses: ruby/build
     with:

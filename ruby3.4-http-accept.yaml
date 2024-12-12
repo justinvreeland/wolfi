@@ -1,6 +1,6 @@
 # Generated from https://github.com/ioquatix/http-accept
 package:
-  name: ruby3.3-http-accept
+  name: ruby3.4-http-accept
   version: 2.2.1
   epoch: 0
   description: Parse Accept and Accept-Language HTTP headers.

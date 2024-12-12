@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-date
+  name: ruby3.4-date
   version: 3.4.1
   epoch: 0
   description: A subclass of Object includes Comparable module for handling dates.

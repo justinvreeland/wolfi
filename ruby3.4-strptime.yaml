@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-strptime
+  name: ruby3.4-strptime
   version: 0.2.5
   epoch: 0
   description: a fast strptime/strftime engine which uses VM.

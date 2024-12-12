@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-async
+  name: ruby3.4-async
   version: 2.14.2
   epoch: 0
   description: A concurrency framework for Ruby.
@@ -31,10 +31,6 @@ pipeline:
       expected-commit: 9942abde424035f6adeb6b5ad5f00c4b41971efd
       repository: https://github.com/socketry/async
       tag: v${{package.version}}
-
-  - uses: patch
-    with:
-      patches: 001-remove-signing-key.patch
 
   - uses: ruby/build
     with:

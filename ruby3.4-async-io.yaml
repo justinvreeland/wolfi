@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-async-io
+  name: ruby3.4-async-io
   version: 1.43.2
   epoch: 0
   description: Provides support for asynchonous TCP, UDP, UNIX and SSL sockets.
@@ -30,10 +30,6 @@ pipeline:
       repository: https://github.com/socketry/async-io
       tag: v${{package.version}}
 
-  - uses: patch
-    with:
-      patches: 001-remove-signing-key.patch
-
   - uses: ruby/build
     with:
       gem: ${{vars.gem}}
@@ -50,7 +46,6 @@ test:
     contents:
       packages:
         - ruby-${{vars.rubyMM}}
-        - ruby${{vars.rubyMM}}-async
   pipeline:
     - runs: |
         ruby <<-EOF

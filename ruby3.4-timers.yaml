@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-timers
+  name: ruby3.4-timers
   version: 4.3.5
   epoch: 0
   description: Pure Ruby one-shot and periodic timers.
@@ -28,10 +28,6 @@ pipeline:
       expected-commit: e16c2eca80b7dd574a17b3761a185d19676ed907
       repository: https://github.com/socketry/timers
       tag: v${{package.version}}
-
-  - uses: patch
-    with:
-      patches: 001-remove-signing-key.patch
 
   - uses: ruby/build
     with:

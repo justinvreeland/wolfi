@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-rexml
+  name: ruby3.4-rexml
   version: 3.3.9
   epoch: 0
   description: An XML toolkit for Ruby

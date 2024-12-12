@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-connection_pool
+  name: ruby3.4-connection_pool
   version: 2.4.1
   epoch: 0
   description: Generic connection pool for Ruby

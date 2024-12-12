@@ -1,6 +1,6 @@
 # Generated from https://github.com/ruby/logger
 package:
-  name: ruby3.3-logger
+  name: ruby3.4-logger
   version: 1.6.2
   epoch: 0
   description: Provides a simple logging utility for outputting messages.

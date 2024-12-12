@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-io-endpoint
+  name: ruby3.4-io-endpoint
   version: 0.14.0
   epoch: 0
   description: A Ruby gem providing endpoint abstractions for network clients and servers.

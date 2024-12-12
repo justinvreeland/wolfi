@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-fiber-annotation
+  name: ruby3.4-fiber-annotation
   version: 0.2.0
   epoch: 0
   description: A mechanism for annotating fibers.

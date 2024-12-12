@@ -1,6 +1,6 @@
 # Generated from https://github.com/jeremyevans/tilt
 package:
-  name: ruby3.3-tilt
+  name: ruby3.4-tilt
   version: 2.4.0
   epoch: 0
   description: Generic interface to multiple Ruby template engines

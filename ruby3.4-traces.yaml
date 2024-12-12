@@ -1,5 +1,5 @@
 package:
-  name: ruby3.3-traces
+  name: ruby3.4-traces
   version: 0.14.1
   epoch: 0
   description: Application instrumentation and tracing.
@@ -28,10 +28,6 @@ pipeline:
       expected-commit: e15e6c4af451393e0482391a9d278ac5d00cd3aa
       repository: https://github.com/socketry/traces
       tag: v${{package.version}}
-
-  - uses: patch
-    with:
-      patches: 001-remove-signing-key.patch
 
   - uses: ruby/build
     with:
