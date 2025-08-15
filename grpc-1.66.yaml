@@ -63,10 +63,6 @@ pipeline:
       expected-commit: f686ffe7e703fb1440dabea419579e566a8becc3
 
   - runs: |
-      cd third_party
-      git submodule update --init --recursive
-
-  - runs: |
       mkdir -p "${{targets.destdir}}"/usr/share/doc/grpc
       cmake -B _build -G Ninja \
       	-DCMAKE_BUILD_TYPE=None \
@@ -82,17 +78,18 @@ pipeline:
         -DgRPC_RE2_PROVIDER=package \
       	-DgRPC_BENCHMARK_PROVIDER=package \
       	-DgRPC_BACKWARDS_COMPATIBILITY_MODE=OFF \
-      	-DgRPC_BUILD_TESTS=OFF
+      	-DgRPC_BUILD_TESTS=OFF \
+        -DgRPC_BUILD_CODEGEN=ON
       cmake --build _build
 
       GRPC_PYTHON_CFLAGS="-std=c++17" \
-      GRPC_PYTHON_DISABLE_LIBC_COMPATIBILITY=1 \
-      GRPC_PYTHON_BUILD_SYSTEM_CARES=1 \
-      GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=1 \
-      GRPC_PYTHON_BUILD_SYSTEM_ZLIB=1 \
-      GRPC_PYTHON_BUILD_SYSTEM_RE2=1 \
-      GRPC_PYTHON_BUILD_SYSTEM_ABSL=1 \
-      python3 setup.py build
+      GRPC_PYTHON_BUILD_SYSTEM_CARES=True \
+      GRPC_PYTHON_BUILD_SYSTEM_OPENSSL=True \
+      GRPC_PYTHON_BUILD_SYSTEM_ZLIB=True \
+      GRPC_PYTHON_BUILD_SYSTEM_RE2=True \
+      GRPC_PYTHON_BUILD_SYSTEM_ABSL=True \
+      python3 pip install -verbose --no-index --no-build-isolation --no-deps \
+      --force-reinstall --prefix=/usr --root=${{targets.destdir}}
 
       # grpcio-tools
       cd tools/distrib/python

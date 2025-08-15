@@ -1,0 +1,7 @@
+name: Demo environment variables not being passed down in files
+pipeline:
+  - name: "pip build"
+    runs: |
+      echo "ENV"
+      env
+      echo "ENV DONE"

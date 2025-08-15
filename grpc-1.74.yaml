@@ -75,16 +75,12 @@ pipeline:
       expected-commit: 893bdadd56dbb75fb156175afdaa2b0d47e1c15b
 
   - runs: |
-      cd third_party
-      git submodule update --init --recursive
-
-  - runs: |
       mkdir -p "${{targets.destdir}}"/usr/share/doc/grpc
       cmake -B _build -G Ninja \
       	-DCMAKE_BUILD_TYPE=None \
       	-DCMAKE_INSTALL_PREFIX=/usr \
       	-DCMAKE_CXX_STANDARD=17 \
-      	-DBUILD_SHARED_LIBS=True \
+      	-DBUILD_SHARED_LIBS=ON \
       	-DgRPC_INSTALL=ON \
       	-DgRPC_CARES_PROVIDER=package \
       	-DgRPC_SSL_PROVIDER=package \
@@ -93,22 +89,31 @@ pipeline:
       	-DgRPC_ABSL_PROVIDER=package \
         -DgRPC_RE2_PROVIDER=package \
       	-DgRPC_BENCHMARK_PROVIDER=package \
-      	-DgRPC_BACKWARDS_COMPATIBILITY_MODE=OFF \
-      	-DgRPC_BUILD_TESTS=OFF
+      	-DgRPC_BUILD_TESTS=OFF \
+        -DgRPC_BUILD_CODEGEN=ON
       cmake --build _build
 
   - runs: |
-      DESTDIR="${{targets.destdir}}" cmake --install _build
-      cd doc
-      find ./ -type f -print -exec install -Dm644 {} "${{targets.destdir}}"/usr/share/doc/grpc/{} \;
-      rm "${{targets.destdir}}"/usr/share/doc/grpc/.gitignore
-      find "${{targets.destdir}}" -type f -name roots.pem -exec \
-      sh -c 'rm $0 && ln -s /etc/ssl/certs/ca-certificates.crt $0' "{}" \;
+       DESTDIR="${{targets.destdir}}" cmake --install _build
+       cd doc
+       find ./ -type f -print -exec install -Dm644 {} "${{targets.destdir}}"/usr/share/doc/grpc/{} \;
+       rm "${{targets.destdir}}"/usr/share/doc/grpc/.gitignore
+       find "${{targets.destdir}}" -type f -name roots.pem -exec \
+       sh -c 'rm $0 && ln -s /etc/ssl/certs/ca-certificates.crt $0' "{}" \;
 
 subpackages:
   - range: py-versions
     name: py${{range.key}}-grpcio-${{vars.major-minor-version}}
     description: python${{range.key}} version of grpcio
+    environment:
+      environment:
+          GRPC_PYTHON_CFLAGS: "-std=c++17"
+          GRPC_PYTHON_BUILD_SYSTEM_CARES: "True"
+          GRPC_PYTHON_BUILD_SYSTEM_OPENSSL: "True"
+          GRPC_PYTHON_BUILD_SYSTEM_ZLIB: "True"
+          GRPC_PYTHON_BUILD_SYSTEM_RE2: "True"
+          GRPC_PYTHON_BUILD_SYSTEM_ABSL: "True"
+          GRPC_PYTHON_BUILD_SYSTEM_CYTHON: "True"
     dependencies:
       provider-priority: ${{range.value}}
       provides:
@@ -117,14 +122,6 @@ subpackages:
         - py${{range.key}}-grpcio
     pipeline:
       - uses: py/pip-build-install
-        environment:
-          GRPC_PYTHON_CFLAGS: "-std=c++17"
-          GRPC_PYTHON_DISABLE_LIBC_COMPATIBILITY: "1"
-          GRPC_PYTHON_BUILD_SYSTEM_CARES: "1"
-          GRPC_PYTHON_BUILD_SYSTEM_OPENSSL: "1"
-          GRPC_PYTHON_BUILD_SYSTEM_ZLIB: "1"
-          GRPC_PYTHON_BUILD_SYSTEM_RE2: "1"
-          GRPC_PYTHON_BUILD_SYSTEM_ABSL: "1"
         with:
           python: python${{range.key}}
       - uses: strip

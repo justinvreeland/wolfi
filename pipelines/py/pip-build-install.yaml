@@ -22,6 +22,9 @@ inputs:
 pipeline:
   - name: "pip build"
     runs: |
+      echo "PRINTING ENV"
+      env
+      echo "PRINTED ENV"
       export SOURCE_DATE_EPOCH=315532800
       py=${{inputs.python}}
       pyexe=${{inputs.needs-exe-named-python}}
