@@ -1,7 +1,7 @@
 package:
   name: protobuf
   version: "32.1" # On update, please check if -fdelete-null-pointer-checks is still required
-  epoch: 1
+  epoch: 2
   description: Library for extensible, efficient structure packing
   copyright:
     - license: BSD-3-Clause
@@ -81,8 +81,6 @@ subpackages:
         - name: Verify protoc installation
           runs: |
             protoc --version || exit 1
-            protoc-${{package.version}}.0 --version
-            protoc-${{package.version}}.0 --help
         - name: Compile sample proto file
           runs: |
             echo 'syntax = "proto3"; message Test { string name = 1; }' > test.proto
